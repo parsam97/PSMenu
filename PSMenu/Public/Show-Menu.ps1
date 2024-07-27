@@ -134,6 +134,10 @@ function Show-Menu {
                 Break
             }
 
+            If (Test-KeyBack $VKeyCode) {
+                Return -1
+            }
+
             # While there are 
             Do {
                 # Read key when callback and available key, or no callback at all
@@ -148,7 +152,6 @@ function Show-Menu {
                 }
 
                 $Position = Get-PositionWithVKey -MenuItems $MenuItems -Position $Position -VKeyCode $VKeyCode
-
                 If (!$(Test-KeyEscape $VKeyCode)) {
                     [System.Console]::SetCursorPosition(0, [Math]::Max(0, [Console]::CursorTop - $MenuHeight))
                     $NeedRendering = $true

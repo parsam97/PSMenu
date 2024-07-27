@@ -9,6 +9,7 @@ $KeyConstants = [PSCustomObject]@{
     VK_PAGEDOWN = 0x22; # Actually VK_NEXT
     VK_END      = 0x23;
     VK_HOME     = 0x24;
+    VK_BACK     = 0x08;
 }
 
 function Test-KeyEnter($VKeyCode) {
@@ -45,4 +46,8 @@ function Test-KeyEnd($VKeyCode) {
 
 function Test-KeyHome($VKeyCode) {
     Return $VKeyCode -eq $KeyConstants.VK_HOME
+}
+
+function Test-KeyBack($VKeyCode) {
+    Return $VKeyCode -eq $KeyConstants.VK_BACK
 }
