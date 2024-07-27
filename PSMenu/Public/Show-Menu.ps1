@@ -87,6 +87,7 @@ function Show-Menu {
     [CmdletBinding()]
     Param (
         [Parameter(Mandatory, Position = 0)][Array] $MenuItems,
+        [String]$SeparatorValue,
         [Switch]$ReturnIndex, 
         [Switch]$MultiSelect, 
         [ConsoleColor] $ItemFocusColor = [ConsoleColor]::Green,
@@ -116,7 +117,8 @@ function Show-Menu {
                 -MultiSelect:$MultiSelect `
                 -CurrentSelection:$CurrentSelection `
                 -ItemFocusColor $ItemFocusColor `
-                -MenuItemFormatter $MenuItemFormatter
+                -MenuItemFormatter $MenuItemFormatter `
+                -SeparatorValue $SeparatorValue
         }
         $MenuHeight = 0
 

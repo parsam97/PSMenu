@@ -1,12 +1,13 @@
 function Format-MenuItem(
     [Parameter(Mandatory)] $MenuItem, 
-    [Switch] $MultiSelect, 
+    [Switch] $MultiSelect,
+    [String] $SeparatorValue,
     [Parameter(Mandatory)][bool] $IsItemSelected, 
     [Parameter(Mandatory)][bool] $IsItemFocused) {
 
     $SelectionPrefix = '    '
     $FocusPrefix = '  '
-    $ItemText = ' -------------------------- '
+    $ItemText = $SeparatorValue ? $SeparatorValue : ' -------------------------- '
 
     if ($(Test-MenuSeparator $MenuItem) -ne $true) {
         if ($MultiSelect) {
