@@ -87,14 +87,15 @@ function Show-Menu {
     [CmdletBinding()]
     Param (
         [Parameter(Mandatory, Position = 0)][Array] $MenuItems,
-        [Int]$StartPosition = 0,
-        [String]$SeparatorValue,
         [Switch]$ReturnIndex, 
         [Switch]$MultiSelect, 
         [ConsoleColor] $ItemFocusColor = [ConsoleColor]::Green,
         [ScriptBlock] $MenuItemFormatter = { Param($M) Format-MenuItemDefault $M },
         [Array] $InitialSelection = @(),
-        [ScriptBlock] $Callback = $null
+        [ScriptBlock] $Callback = $null,
+
+        [Int]$StartPosition = 0,
+        [String]$SeparatorValue
     )
 
     Test-HostSupported
