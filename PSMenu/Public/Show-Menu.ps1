@@ -87,6 +87,7 @@ function Show-Menu {
     [CmdletBinding()]
     Param (
         [Parameter(Mandatory, Position = 0)][Array] $MenuItems,
+        [Int]$StartPosition = 0,
         [String]$SeparatorValue,
         [Switch]$ReturnIndex, 
         [Switch]$MultiSelect, 
@@ -103,7 +104,7 @@ function Show-Menu {
     $VKeyCode = 0
 
     # Initialize valid position
-    $Position = Get-WrappedPosition $MenuItems -Position 0 -PositionOffset 1
+    $Position = Get-WrappedPosition $MenuItems -Position $StartPosition -PositionOffset 1
 
     $CurrentSelection = $InitialSelection
     
