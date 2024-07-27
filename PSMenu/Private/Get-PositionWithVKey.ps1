@@ -1,4 +1,4 @@
-function Get-PositionWithVKey([Array]$MenuItems, [int]$Position, $VKeyCode) {
+function Get-PositionWithVKey([Array]$MenuItems, [int]$Position, $VKeyCode, [bool]$DisableWrapAround) {
     $MinPosition = 0
     $MaxPosition = $MenuItems.Count - 1
     $WindowHeight = Get-ConsoleHeight
@@ -16,12 +16,14 @@ function Get-PositionWithVKey([Array]$MenuItems, [int]$Position, $VKeyCode) {
 
     If (Test-KeyUp $VKeyCode) { 
         $NewPosition--
+        if ($DisableWrapAround -and $NewPosition -lt 0) {$NewPosition = $MinPosition}
 
         Reset-InvalidPosition -PositionOffset -1
     }
 
     If (Test-KeyDown $VKeyCode) {
         $NewPosition++
+        if ($DisableWrapAround -and $NewPosition -gt ($MenuItems.Count-1)) {$NewPosition = $MenuItems.Count - 1}
 
         Reset-InvalidPosition -PositionOffset 1
     }

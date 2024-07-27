@@ -95,7 +95,8 @@ function Show-Menu {
         [ScriptBlock] $Callback = $null,
 
         [Int]$StartPosition = 0,
-        [String]$SeparatorValue
+        [String]$SeparatorValue,
+        [Switch]$DisableWrapAround
     )
 
     Test-HostSupported
@@ -153,7 +154,7 @@ function Show-Menu {
                     $CurrentSelection = Toggle-Selection $Position $CurrentSelection
                 }
 
-                $Position = Get-PositionWithVKey -MenuItems $MenuItems -Position $Position -VKeyCode $VKeyCode
+                $Position = Get-PositionWithVKey -MenuItems $MenuItems -Position $Position -VKeyCode $VKeyCode -DisableWrapAround $DisableWrapAround
                 If (!$(Test-KeyEscape $VKeyCode)) {
                     [System.Console]::SetCursorPosition(0, [Math]::Max(0, [Console]::CursorTop - $MenuHeight))
                     $NeedRendering = $true
